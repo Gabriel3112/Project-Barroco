@@ -26,15 +26,33 @@ const StackHistoricalContext = ({ route }) => {
     </Stack.Navigator>
   );
 };
+
+const StackArtists = ({ route }) => {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  return (
+    <Stack.Navigator headerMode={routeName === "Conteúdo" ? "screen" : "none"}>
+      <Stack.Screen name="Artistas" component={Artists} />
+      <Stack.Screen name="Conteúdo" component={Content} />
+    </Stack.Navigator>
+  );
+};
+
+const StackWorksOfArt = ({ route }) => {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  return (
+    <Stack.Navigator headerMode={routeName === "Conteúdo" ? "screen" : "none"}>
+      <Stack.Screen name="Obras" component={WorksOfArt} />
+      <Stack.Screen name="Conteúdo" component={Content} />
+    </Stack.Navigator>
+  );
+};
 const TabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
         style: {
-          backgroundColor: "#94b5c2",
-          borderTopLeftRadius: 15,
-          borderTopRightRadius: 15,
+          backgroundColor: "#dedede",
           height: 50,
         },
       }}
@@ -46,11 +64,11 @@ const TabNavigator = () => {
             <View style={styles.containerTabButton}>
               <MDIcon
                 name="book-open-variant"
-                size={25}
-                color={focused ? "#786f49" : "#3f3404"}
+                size={focused ? 30 : 25}
+                color={focused ? "#262626" : "#7a7a7a"}
               />
               <Text
-                style={{ color: focused ? "#786f49" : "#3f3404", fontSize: 10 }}
+                style={{ color: focused ? "#262626" : "#7a7a7a", fontSize: 10 }}
               >
                 Contexto Hitórico
               </Text>
@@ -61,17 +79,17 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Artistas"
-        component={Artists}
+        component={StackArtists}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.containerTabButton}>
               <MDIcon
                 name="account"
-                size={25}
-                color={focused ? "#786f49" : "#3f3404"}
+                size={focused ? 30 : 25}
+                color={focused ? "#262626" : "#7a7a7a"}
               />
               <Text
-                style={{ color: focused ? "#786f49" : "#3f3404", fontSize: 10 }}
+                style={{ color: focused ? "#262626" : "#7a7a7a", fontSize: 10 }}
               >
                 Artistas
               </Text>
@@ -81,17 +99,17 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Obras de Arte"
-        component={WorksOfArt}
+        component={StackWorksOfArt}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.containerTabButton}>
               <MDIcon
                 name="brush"
-                size={25}
-                color={focused ? "#786f49" : "#3f3404"}
+                size={focused ? 30 : 25}
+                color={focused ? "#262626" : "#7a7a7a"}
               />
               <Text
-                style={{ color: focused ? "#786f49" : "#3f3404", fontSize: 10 }}
+                style={{ color: focused ? "#262626" : "#7a7a7a", fontSize: 10 }}
               >
                 Obras
               </Text>
